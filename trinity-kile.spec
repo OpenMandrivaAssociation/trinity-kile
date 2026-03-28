@@ -40,6 +40,7 @@ BuildOption:    -DSHARE_INSTALL_PREFIX=%{tde_prefix}/share
 
 BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
 BuildRequires:	trinity-tdebase-devel >= %{tde_version}
+BuildRequires:  trinity-tde-cmake >= %{tde_version}
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
