@@ -1,10 +1,6 @@
 %bcond clang 1
 
 # TDE variables
-%if "%{?tde_version}" == ""
-%define tde_version 14.1.5
-%endif
-
 %define tde_pkg kile
 %define tde_prefix /opt/trinity
 
@@ -14,14 +10,14 @@
 %define _disable_rebuild_configure 1
 
 # fixes error: Empty %files file …/debugsourcefiles.list
-%define _debugsource_template %{nil}
+%undefine _debugsource_template
 
 %define tarball_name %{tde_pkg}-trinity
 
 
 Name:			trinity-%{tde_pkg}
-Version:		2.0.3
-Release:		%{?tde_version:%{tde_version}_}3
+Version:		14.1.6
+Release:		1
 Summary:		TDE Integrated LaTeX Environment [Trinity]
 Group:			Applications/Publishing
 URL:			http://www.trinitydesktop.org/
@@ -29,7 +25,7 @@ URL:			http://www.trinitydesktop.org/
 License:	GPLv2+
 
 
-Source0:		https://mirror.ppa.trinitydesktop.org/trinity/releases/R%{tde_version}/main/applications/office/%{tarball_name}-%{tde_version}.tar.xz
+Source0:		https://mirror.ppa.trinitydesktop.org/trinity/releases/R%{version}/main/applications/office/%{tarball_name}-%{version}.tar.xz
 
 BuildSystem:  	cmake
 
@@ -38,9 +34,10 @@ BuildOption:    -DCMAKE_INSTALL_PREFIX=%{tde_prefix}
 BuildOption:    -DDATA_INSTALL_DIR=%{tde_prefix}/share/apps
 BuildOption:    -DSHARE_INSTALL_PREFIX=%{tde_prefix}/share
 
-BuildRequires:	trinity-tdelibs-devel >= %{tde_version}
-BuildRequires:	trinity-tdebase-devel >= %{tde_version}
-BuildRequires:  trinity-tde-cmake >= %{tde_version}
+BuildRequires:	trinity-tdelibs-devel >= %{version}
+BuildRequires:	trinity-tdebase-devel >= %{version}
+BuildRequires:  trinity-tde-cmake >= %{version}
+
 BuildRequires:	desktop-file-utils
 
 BuildRequires:	gettext
@@ -54,51 +51,51 @@ BuildRequires:  pkgconfig(x11)
 BuildRequires:  pkgconfig(ice)
 BuildRequires:  pkgconfig(sm)
 
-Obsoletes: %{name}-i18n-ar < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-bg < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-br < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ca < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-cs < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-cy < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-da < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-de < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-el < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-engb < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-es < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-et < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-eu < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-fi < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-fr < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ga < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-gl < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-hi < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-hu < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-is < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-it < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ja < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-lt < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ms < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-mt < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-nb < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-nds < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-nl < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-nn < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-pa < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-pl < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-pt < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ptbr < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ro < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ru < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-rw < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-sk < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-sr < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-srlatin < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-sv < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-ta < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-th < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-tr < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-uk < %{?epoch:%{epoch}:}%{version}-%{release}
-Obsoletes: %{name}-i18n-zhcn < %{?epoch:%{epoch}:}%{version}-%{release}
+Obsoletes: %{name}-i18n-ar < %{EVRD}
+Obsoletes: %{name}-i18n-bg < %{EVRD}
+Obsoletes: %{name}-i18n-br < %{EVRD}
+Obsoletes: %{name}-i18n-ca < %{EVRD}
+Obsoletes: %{name}-i18n-cs < %{EVRD}
+Obsoletes: %{name}-i18n-cy < %{EVRD}
+Obsoletes: %{name}-i18n-da < %{EVRD}
+Obsoletes: %{name}-i18n-de < %{EVRD}
+Obsoletes: %{name}-i18n-el < %{EVRD}
+Obsoletes: %{name}-i18n-engb < %{EVRD}
+Obsoletes: %{name}-i18n-es < %{EVRD}
+Obsoletes: %{name}-i18n-et < %{EVRD}
+Obsoletes: %{name}-i18n-eu < %{EVRD}
+Obsoletes: %{name}-i18n-fi < %{EVRD}
+Obsoletes: %{name}-i18n-fr < %{EVRD}
+Obsoletes: %{name}-i18n-ga < %{EVRD}
+Obsoletes: %{name}-i18n-gl < %{EVRD}
+Obsoletes: %{name}-i18n-hi < %{EVRD}
+Obsoletes: %{name}-i18n-hu < %{EVRD}
+Obsoletes: %{name}-i18n-is < %{EVRD}
+Obsoletes: %{name}-i18n-it < %{EVRD}
+Obsoletes: %{name}-i18n-ja < %{EVRD}
+Obsoletes: %{name}-i18n-lt < %{EVRD}
+Obsoletes: %{name}-i18n-ms < %{EVRD}
+Obsoletes: %{name}-i18n-mt < %{EVRD}
+Obsoletes: %{name}-i18n-nb < %{EVRD}
+Obsoletes: %{name}-i18n-nds < %{EVRD}
+Obsoletes: %{name}-i18n-nl < %{EVRD}
+Obsoletes: %{name}-i18n-nn < %{EVRD}
+Obsoletes: %{name}-i18n-pa < %{EVRD}
+Obsoletes: %{name}-i18n-pl < %{EVRD}
+Obsoletes: %{name}-i18n-pt < %{EVRD}
+Obsoletes: %{name}-i18n-ptbr < %{EVRD}
+Obsoletes: %{name}-i18n-ro < %{EVRD}
+Obsoletes: %{name}-i18n-ru < %{EVRD}
+Obsoletes: %{name}-i18n-rw < %{EVRD}
+Obsoletes: %{name}-i18n-sk < %{EVRD}
+Obsoletes: %{name}-i18n-sr < %{EVRD}
+Obsoletes: %{name}-i18n-srlatin < %{EVRD}
+Obsoletes: %{name}-i18n-sv < %{EVRD}
+Obsoletes: %{name}-i18n-ta < %{EVRD}
+Obsoletes: %{name}-i18n-th < %{EVRD}
+Obsoletes: %{name}-i18n-tr < %{EVRD}
+Obsoletes: %{name}-i18n-uk < %{EVRD}
+Obsoletes: %{name}-i18n-zhcn < %{EVRD}
 
 
 %description
